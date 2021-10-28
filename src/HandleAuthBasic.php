@@ -8,12 +8,12 @@ use Illuminate\Support\Collection;
 
 class HandleAuthBasic
 {
-    /** @var Collection $users */
-    protected $users;
+    /** @var Collection $credentials */
+    protected $credentials;
 
     public function __construct()
     {
-        $this->users = collect(config('authbasic.users'));
+        $this->credentials = collect(config('authbasic.credentials'));
     }
 
     /**
@@ -28,7 +28,7 @@ class HandleAuthBasic
     public function handle($request, Closure $next)
     {
         if (! $request->getUser()
-            || ! $this->users->containsStrict([ $request->getUser(), $request->getPassword() ])
+            || ! $this->credentials->containsStrict([ $request->getUser(), $request->getPassword() ])
         ) {
             throw new UnauthorizedHttpException('Basic', 'Invalid credentials.');
         }

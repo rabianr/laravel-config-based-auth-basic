@@ -17,9 +17,13 @@ php artisan vendor:publish --tag="authbasic"
 
 Set `auth.basic.cb` middleware to any route that require Basic Auth.
 
-Define any authorized users to `config/authbasic.php` config file.
+Define credentials in `config/authbasic.php` config file.
 ```php
-'users' => [
+'credentials' => [
     [ 'user', 'password' ],
 ],
+```
+or in `.env` file
+```
+AUTHBASIC_USERS=user1:pass1,user2:pass2
 ```
